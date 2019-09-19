@@ -35,8 +35,6 @@ if has('conceal')
   syn match texMathSymbol '\\mathbb{Y}' contained conceal cchar=𝕐
   syn match texMathSymbol '\\mathbb{Z}' contained conceal cchar=ℤ
 
-  " syn match texBoldMathText '\\bar\>' contained conceal cchar=‾
-
   " \mathcal characters
   syn match texMathSymbol '\\math\(scr\|cal\){A}' contained conceal cchar=𝓐
   syn match texMathSymbol '\\math\(scr\|cal\){B}' contained conceal cchar=𝓑
@@ -91,6 +89,17 @@ if has('conceal')
 
   syn region texBoldMathText matchgroup=texStatement start='\\\(mathbf\|bm\|symbf\){' end='}' concealends contains=@texMathZoneGroup containedin=texMathMatcher
   syn cluster texMathZoneGroup add=texBoldMathText
+
+  " https://github.com/vim/vim/blob/cd67059c0c3abf1e28aa66458abdf6f338252eb2/runtime/doc/todo.txt#L1893-L1895
+  " syn region texBarMathText matchgroup=texStatement start='\\\(bar\|overline\){' end='}' concealends cchar=‾ contains=@texMathZoneGroup containedin=texMathMatcher
+  syn match texBarMathText '\\bar\>' contained conceal cchar=‾ containedin=texMathMatcher
+  syn match texBarMathText '\\overline\>' contained conceal cchar=‾ containedin=texMathMatcher
+  hi link texBarMathText texStatement
+  syn cluster texMathZoneGroup add=texBarMathText
+
+  syn region texSansMathText matchgroup=texStatement start='\\\(mathsf\|textsf\){' end='}' concealends contains=@texMathZoneGroup containedin=texMathMatcher
+  syn cluster texMathZoneGroup add=texSansMathText
+
 
   syn region texBoldItalStyle     matchgroup=texTypeStyle start="\\emph\s*{" end="}" concealends contains=@texItalGroup
   syn region texItalStyle  matchgroup=texTypeStyle start="\\emph\s*{" end="}" concealends contains=@texItalGroup
