@@ -73,6 +73,7 @@ if has('conceal')
   syn match texMathSymbol '\\,' contained conceal cchar= 
   syn match texMathSymbol '\\ ' contained conceal cchar= 
   syn match texMathSymbol '\\quad' contained conceal cchar= 
+  syn match texMathSymbol '\\qquad' contained conceal cchar= 
   syn match texMathSymbol '\\sqrt' contained conceal cchar=√
   syn match texMathSymbol '\\where\>' contained conceal cchar=|
   syn match texMathSymbol '\\\!' contained conceal
@@ -97,7 +98,7 @@ if has('conceal')
   hi link texBarMathText texStatement
   syn cluster texMathZoneGroup add=texBarMathText
 
-  syn region texSansMathText matchgroup=texStatement start='\\\(mathsf\|textsf\){' end='}' concealends contains=@texMathZoneGroup containedin=texMathMatcher
+  syn region texSansMathText matchgroup=texStatement start='\\\(mathsf\|textsf\|texttt\){' end='}' concealends contains=@texMathZoneGroup containedin=texMathMatcher
   syn cluster texMathZoneGroup add=texSansMathText
 
 
